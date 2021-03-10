@@ -11,11 +11,9 @@ root.title('Księga Meldunkowa Hotel Sudety')
 title_label = Label(root, text="Witaj, wprowadź dane Gościa").grid(column=1, padx=10, pady=10)
 
 #podłączenie
-mydb = mysql.Connect(host='127.0.0.1', unix_socket='', user='root', passwd='WIT123!', db='mysql', database='hotel') 
-#w pkt 1. nie ma database='HostelSudety', to jest dodane po utworzeniu bazy
+mydb = mysql.Connect(host='', unix_socket='', user='', passwd='', db='mysql', database='hotel') 
 
 my_cursor = mydb.cursor() #zmienna
-
 
 def dodaj():
 
@@ -48,12 +46,10 @@ def dodaj():
     
     mydb.commit()
     
-    
 def wyjdz():
     if messagebox.askyesno("Komunikat","Chcesz wyjść?"):
         root.quit()
         return    
-    
         
 #formy i boxy
 imie_label = Label(root, text="Imię: ").grid(row=1,column=0)
@@ -120,7 +116,6 @@ uwagi_label = Label(root, text="Uwagi: ").grid(row=1,column=2)
 uwagi_box = Entry(root,width=30)
 uwagi_box.grid(row=1,column=3,padx=20,pady=5)
 
-
 #buttony
 but1 = Button(root, text='Wyjdź', command=wyjdz)
 but1.grid(row=25, column=1, padx=10, pady=10, sticky=E )
@@ -128,26 +123,6 @@ but1.grid(row=25, column=1, padx=10, pady=10, sticky=E )
 but2 = Button(root, width=30, fg = "red", text="Dodaj", command=dodaj)
 but2.grid(row=18, column=1, padx=10, pady=10)
 
-
 root.mainloop()
 
 
-
-
-#--1------CREATE DATABASE--------
-#my_cursor.execute("CREATE DATABASE HostelSudety")
-#my_cursor.execute("SHOW DATABASES")
-#for db in my_cursor:
-#    print(db)
-
-#--2 bez 1------CREATE TABLE--------
-#my_cursor.execute("CREATE TABLE goscie (name VARCHAR(255), surname VARCHAR(255), age INTEGER(10), user_id INTEGER AUTO_INCREMENT PRIMARY KEY)")
-#my_cursor.execute("SHOW TABLES")
-#for table in my_cursor:
-#    print(table[0])
-
-#--------INSERT--------
-#sqlStuff = "INSERT INTO users (name,surname,age) VALUES (%s, %s, %s)"
-#record1 = ("Aga","Mala",22)
-#my_cursor.execute(sqlStuff, record1)
-#mydb.commit()
